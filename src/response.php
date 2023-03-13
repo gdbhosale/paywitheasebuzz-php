@@ -1,6 +1,6 @@
 <?php
     // include file
-    include_once('easebuzz-lib/easebuzz_payment_gateway.php');
+    include_once('easebuzz-lib/Easebuzz.php');
 
     // salt for testing env
     $SALT = "XXXXXX";

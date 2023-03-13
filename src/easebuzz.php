@@ -1,6 +1,6 @@
 <?php
     // include file
-    include_once('easebuzz-lib/easebuzz_payment_gateway.php');
+    include_once('easebuzz-lib/Easebuzz.php');
 
     /*
     * Create object for call easepay payment gate API and Pass required data into constructor.
