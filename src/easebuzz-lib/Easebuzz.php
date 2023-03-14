@@ -407,7 +407,7 @@ class Easebuzz
         // include file
         include_once 'payment.php';
 
-        $result = response($params, $this->SALT);
+        $result = eb_response($params, $this->SALT);
 
         return json_encode($result);
     }
