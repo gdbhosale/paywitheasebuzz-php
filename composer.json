@@ -3,7 +3,8 @@
     "description": "PHP Package integration kit for pay with easebuzz pay.easebuzz.in",
     "keywords": ["easebuzz", "paywitheasebuzz", "api", "php", "client"],
     "require": {
-        "php": ">=5.5"
+        "php": ">=5.5",
+        "ext-curl": "*"
     },
     "homepage": "https://docs.easebuzz.in/docs/payment-gateway/ex7xej43lwl4g-php",
     "license": "MIT",
