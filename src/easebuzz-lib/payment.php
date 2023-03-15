@@ -28,7 +28,7 @@ function initiate_payment($params, $redirect, $merchant_key, $salt, $env)
     } else {
         if ($result->status == 1) {
             $iframe_result = [
-                'status'=>$result->status,
+                'status' => $result->status,
                 'key' => $merchant_key,
                 'access_key' => $result->data,
             ];
@@ -140,9 +140,9 @@ function _payment($params, $redirect, $merchant_key, $salt, $env)
     }
 
     // again amount convert into string
-    $diff_amount_string = abs(strlen($params['amount']) - strlen(''.$postedArray['amount'].''));
+    $diff_amount_string = abs(strlen($params['amount']) - strlen('' . $postedArray['amount'] . ''));
     $diff_amount_string = ($diff_amount_string === 2) ? 1 : 2;
-    $postedArray['amount'] = sprintf('%.'.$diff_amount_string.'f', $postedArray['amount']);
+    $postedArray['amount'] = sprintf('%.' . $diff_amount_string . 'f', $postedArray['amount']);
 
     // email validation
     $email_validation = _email_validation($postedArray['email']);
@@ -251,7 +251,7 @@ function _removeSpaceAndPreparePostArray($params)
      */
     $temp_array = [];
     foreach ($params as $key => $value) {
-        if (array_key_exists($key, $params) and ! empty($key)) {
+        if (array_key_exists($key, $params) and !empty($key)) {
             if ($key != 'split_payments') {
                 $temp_array[$key] = trim(htmlentities($value, ENT_QUOTES));
             } else {
@@ -311,7 +311,7 @@ function _emptyValidation($params, $salt)
         $empty_value = 'Phone';
     }
 
-    if (! empty($params['phone'])) {
+    if (!empty($params['phone'])) {
         if (strlen((string) $params['phone']) != 10) {
             $empty_value = 'Phone number must be 10 digit and ';
         }
@@ -336,7 +336,7 @@ function _emptyValidation($params, $salt)
     if ($empty_value !== false) {
         return [
             'status' => 0,
-            'data' => 'Mandatory Parameter '.$empty_value.' can not empty',
+            'data' => 'Mandatory Parameter ' . $empty_value . ' can not empty',
         ];
     }
 
@@ -367,35 +367,35 @@ function _emptyValidation($params, $salt)
 function _typeValidation($params, $salt, $env)
 {
     $type_value = false;
-    if (! is_string($params['key'])) {
+    if (!is_string($params['key'])) {
         $type_value = 'Merchant Key should be string';
     }
 
-    if (! is_float($params['amount'])) {
+    if (!is_float($params['amount'])) {
         $type_value = 'The amount should float up to two or one decimal.';
     }
 
-    if (! is_string($params['productinfo'])) {
+    if (!is_string($params['productinfo'])) {
         $type_value = 'Product Information should be string';
     }
 
-    if (! is_string($params['firstname'])) {
+    if (!is_string($params['firstname'])) {
         $type_value = 'First Name should be string';
     }
 
-    if (! is_string($params['phone'])) {
+    if (!is_string($params['phone'])) {
         $type_value = 'Phone Number should be number';
     }
 
-    if (! is_string($params['email'])) {
+    if (!is_string($params['email'])) {
         $type_value = 'Email should be string';
     }
 
-    if (! is_string($params['surl'])) {
+    if (!is_string($params['surl'])) {
         $type_value = 'Success URL should be string';
     }
 
-    if (! is_string($params['furl'])) {
+    if (!is_string($params['furl'])) {
         $type_value = 'Failure URL should be string';
     }
 
@@ -429,7 +429,7 @@ function _typeValidation($params, $salt, $env)
 function _email_validation($email)
 {
     $email_regx = "/^([\w\.-]+)@([\w-]+)\.([\w]{2,8})(\.[\w]{2,8})?$/";
-    if (! preg_match($email_regx, $email)) {
+    if (!preg_match($email_regx, $email)) {
         return [
             'status' => 0,
             'data' => 'Email invalid, Please enter valid email.',
@@ -553,7 +553,7 @@ function _pay($params_array, $redirect, $salt_key, $url)
     $params_array['hash'] = $hash_key;
 
     // call curl_call() for initiate pay link
-    $curl_result = _curlCall($url.'payment/initiateLink', http_build_query($params_array));
+    $curl_result = _curlCall($url . 'payment/initiateLink', http_build_query($params_array));
 
     //  print_r($curl_result);
     //  die;
@@ -564,7 +564,7 @@ function _pay($params_array, $redirect, $salt_key, $url)
         return $curl_result;
     } else {
         if ($redirect == true) {
-            $curl_result->data = $url.'pay/'.$accesskey;
+            $curl_result->data = $url . 'pay/' . $accesskey;
         } else {
             $curl_result->data = $accesskey;
             // return $accesskey;
@@ -716,13 +716,13 @@ function _paymentResponse($result)
 {
     if ($result->status === 1) {
         // first way
-        header('Location:'.$result->data);
+        header('Location:' . $result->data);
 
         // second wayre
         // echo "
-            //    <script type='text/javascript'>
-            //           window.location ='".$result->data."'
-            //    </script>
+        //    <script type='text/javascript'>
+        //           window.location ='".$result->data."'
+        //    </script>
         // ";
 
         exit();
@@ -757,7 +757,7 @@ function _paymentResponse($result)
 function eb_response($response_params, $salt_key)
 {
     // check return response params is array or not
-    if (! is_array($response_params) || count($response_params) === 0) {
+    if (!is_array($response_params) || count($response_params) === 0) {
         return [
             'status' => 0,
             'data' => 'Response params is empty.',
@@ -899,7 +899,7 @@ function _getReverseHashKey($response_array, $s_key)
     // make an array or split into array base on pipe sign.
     $reverse_hash = '';
     $reverse_hash_sequence_array = explode('|', $reverse_hash_sequence);
-    $reverse_hash .= $s_key.'|'.$response_array['status'];
+    $reverse_hash .= $s_key . '|' . $response_array['status'];
 
     // prepare a string based on reverse hash sequence from the $response_array array.
     foreach ($reverse_hash_sequence_array as $value) {

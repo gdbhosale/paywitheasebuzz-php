@@ -14,7 +14,7 @@ class Easebuzz
 
     private $ENV = '';
 
-    /*
+    /**
     * initialised private variable for setup easebuzz payment gateway.
     *
     * @param  string $key - holds the merchant key.
@@ -22,7 +22,6 @@ class Easebuzz
     * @param  string $env - holds the env(enviroment).
     *
     */
-
     public function __construct($key, $salt, $env)
     {
         $this->MERCHANT_KEY = $key;
@@ -30,7 +29,7 @@ class Easebuzz
         $this->ENV = $env;
     }
 
-    /*
+    /**
     * initiatePaymentAPI function to integrate easebuzz for payment.
     *
     * http method used - POST
@@ -101,7 +100,7 @@ class Easebuzz
         return initiate_payment($params, $redirect, $this->MERCHANT_KEY, $this->SALT, $this->ENV);
     }
 
-    /*
+    /**
     * transactionAPI function to query for single transaction
     *
     * http method used - POST
@@ -173,7 +172,7 @@ class Easebuzz
         return json_encode($result);
     }
 
-    /*
+    /**
     * transactionDateAPI function to transaction based on date.
     *
     * http method used - POST
@@ -239,7 +238,7 @@ class Easebuzz
         return json_encode($result);
     }
 
-    /*
+    /**
     * refundAPI function to refund for the transaction
     *
     * http method used - POST
@@ -305,7 +304,7 @@ class Easebuzz
         return json_encode($result);
     }
 
-    /*
+    /**
     * payoutAPI function to payout for particular date.
     *
     * http method used - POST
@@ -371,7 +370,7 @@ class Easebuzz
         return json_encode($result);
     }
 
-    /*
+    /**
     * easebuzzResponse mehod to verify easebuzz API response is acceptable or not.
     *
     * http method used - POST

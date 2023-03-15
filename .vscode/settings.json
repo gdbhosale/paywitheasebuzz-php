@@ -1,0 +1,18 @@
+{
+    "[php]": {
+        "editor.defaultFormatter": "junstyle.php-cs-fixer"
+    },
+    "[json]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.tabSize": 4
+    },
+    "editor.detectIndentation": false,
+    "editor.formatOnSave": true,
+    "editor.insertSpaces": true,
+    "editor.renderWhitespace": "all",
+    "editor.tabCompletion": "on",
+    "editor.tabSize": 4,
+    "editor.wordBasedSuggestions": true,
+    "editor.wordWrapColumn": 120,
+    "git.mergeEditor": false
+}
